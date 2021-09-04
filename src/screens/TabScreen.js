@@ -16,13 +16,13 @@ export default class TabScreen extends Component {
           <Right />
         </Header>
         <Tabs>
-          <Tab  tabStyle={{backgroundColor:'white'}} heading="Sport">
+          <Tab  tabStyle={{backgroundColor:'white'}} heading=" الرياضة">
             <Tab1 />
           </Tab>
-          <Tab tabStyle={{backgroundColor:'white'}}  heading="Politician">
+          <Tab tabStyle={{backgroundColor:'white'}}  heading=" العامة">
             <Tab2 />
           </Tab>
-          <Tab tabStyle={{backgroundColor:'white'}}  heading="Migration">
+          <Tab tabStyle={{backgroundColor:'white'}}  heading="الهجرة">
             <Tab3 />
           </Tab>
         </Tabs>
