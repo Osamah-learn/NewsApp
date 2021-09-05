@@ -41,7 +41,7 @@ export default class Tab1 extends Component {
   }
 
   render() {
-    console.log(this.state.data);
+    
     let view = this.state.isLoading ? (
       <View>
         <ActivityIndicator animating={true} />

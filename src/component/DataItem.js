@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TimeAgo from './Time'
 import {
   Container,
   Content,
@@ -10,6 +11,7 @@ import {
   Body,
   Right,
   Button,
+  View
 } from "native-base";
 
 export default class DataItem extends Component {
@@ -17,12 +19,13 @@ export default class DataItem extends Component {
     super(props);
   }
   render() {
-    console.log(this.props.data.title);
     return (
       <ListItem thumbnail>
         <Left>
           <Thumbnail
-            square
+          
+            
+            large
             source={{
               uri: this.props.data.urlToImage
                 ? this.props.data.urlToImage
@@ -31,10 +34,14 @@ export default class DataItem extends Component {
           />
         </Left>
         <Body>
-          <Text numberOfLines={2}>{this.props.data.title}</Text>
-          <Text note numberOfLines={2}>
+          <Text style={{marginTop:30}  } numberOfLines={2}>{this.props.data.title}</Text>
+          <Text style={{paddingTop:0,marginTop:4}} note numberOfLines={2}>
             {this.props.data.description}
           </Text>
+          <View style={{flex:1,flexDirection:'row',marginTop:8,marginLeft:0}}>
+          <TimeAgo Time={this.props.data.publishedAt}/>
+         
+          </View>
         </Body>
         <Right>
           <Button transparent>
