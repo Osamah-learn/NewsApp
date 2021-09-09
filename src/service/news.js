@@ -1,14 +1,15 @@
 import {
-  sport_url,
+  url,
   _api_key,
   country_code,
   category,
+  source,
 } from "..//config/rest_config";
 /* Fetch The Articles */
-export async function getArticles() {
+export async function getArticles(category='general') {
   try {
     let articles = await fetch(
-      `${sport_url}?country=${country_code}&category=${category}`,
+      `${url}?country=${country_code}&category=${category}`,
       {
         headers: {
           "X-API-KEY": _api_key,

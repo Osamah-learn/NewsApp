@@ -22,7 +22,6 @@ const renderTabBar = (props) => {
 };
 export default class TabScreen extends Component {
   render() {
-    console.log("App Work");
     return (
       <Container>
         <Header hasTabs style={{ backgroundColor: "#33ACFF" }}>
@@ -33,13 +32,13 @@ export default class TabScreen extends Component {
           <Right />
         </Header>
         <Tabs renderTabBar={renderTabBar}>
-          <Tab tabStyle={{ backgroundColor: "white" }} heading=" الرياضة">
+          <Tab tabStyle={{ backgroundColor: "white" }} heading=" العامة">
             <Tab1 />
           </Tab>
-          <Tab tabStyle={{ backgroundColor: "white" }} heading=" العامة">
+          <Tab tabStyle={{ backgroundColor: "white" }} heading=" الرياضة">
             <Tab2 />
           </Tab>
-          <Tab tabStyle={{ backgroundColor: "white" }} heading="الهجرة">
+          <Tab tabStyle={{ backgroundColor: "white" }} heading="تقنية">
             <Tab3 />
           </Tab>
         </Tabs>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TimeAgo from './Time'
+import TimeAgo from "./Time";
 import {
   Container,
   Content,
@@ -11,25 +11,27 @@ import {
   Body,
   Right,
   Button,
-  View
+  View,
 } from "native-base";
+import { LogBox } from "react-native";
+/* 
+Hiding 
+Warning: VirtualizedLists should never be nested  */
+LogBox.ignoreAllLogs();
 
 export default class DataItem extends Component {
   constructor(props) {
     super(props);
   }
-  handlePress = ()=>{
-    const {url,title} = this.props.data;
-    this.props.onPress({url,title})
-    
-  }
+  handlePress = () => {
+    const { url, title } = this.props.data;
+    this.props.onPress({ url, title });
+  };
   render() {
     return (
       <ListItem thumbnail>
         <Left>
           <Thumbnail
-          
-            
             large
             source={{
               uri: this.props.data.urlToImage
@@ -39,13 +41,21 @@ export default class DataItem extends Component {
           />
         </Left>
         <Body>
-          <Text style={{marginTop:30}  } numberOfLines={2}>{this.props.data.title}</Text>
-          <Text style={{paddingTop:0,marginTop:4}} note numberOfLines={2}>
+          <Text style={{ marginTop: 30 }} numberOfLines={2}>
+            {this.props.data.title}
+          </Text>
+          <Text style={{ paddingTop: 0, marginTop: 4 }} note numberOfLines={2}>
             {this.props.data.description}
           </Text>
-          <View style={{flex:1,flexDirection:'row',marginTop:8,marginLeft:0}}>
-          <TimeAgo Time={this.props.data.publishedAt}/>
-         
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              marginTop: 8,
+              marginLeft: 0,
+            }}
+          >
+            <TimeAgo Time={this.props.data.publishedAt} />
           </View>
         </Body>
         <Right>

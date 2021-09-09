@@ -1,28 +1,85 @@
-import React, { Component } from 'react';
-import { Container, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
+import React, { Component } from "react";
+import { Alert, ActivityIndicator } from "react-native";
+import DataItem from "../../component/DataItem";
+import { getArticles } from "../../service/news";
+import {ModalComponent }from "..//..//component/Modal";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Text,
+  Left,
+  Body,
+  Right,
+  Button,
+  View,
+  ScrollView,
+} from "native-base";
+
 export default class Tab2 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      data: null,
+      setModelVisible: false,
+      modalArticleData: {},
+    };
+  }
+handleModalDataOnPress = (articleData)=>{
+this.setState({
+  setModelVisible:true,
+  modalArticleData:articleData,
+})
+}
+handleModalClose = ()=>{
+this.setState({
+  setModelVisible:false,
+  modalArticleData:{}
+})
+}
+  componentDidMount() {
+    getArticles('sports').then(
+      (data) => {
+        this.setState({
+          isLoading: false,
+          data: data,
+        });
+      },
+      (error) => {
+        Alert.alert(error, "SomeThing Went Wrong");
+      }
+    );
+  }
+
   render() {
+    let view = this.state.isLoading ? (
+      <View>
+        <ActivityIndicator animating={true} />
+        <Text style={{ marginTop: 10 }}>Please Wait ...</Text>
+      </View>
+    ) : (
+      <List
+        dataArray={this.state.data}
+        renderRow={(item) => {
+          return <DataItem
+          onPress={this.handleModalDataOnPress}
+          data={item} key={item} />;
+        }}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    );
+
     return (
       <Container>
-        
-        <Content>
-          <List>
-            <ListItem thumbnail>
-              <Left>
-                <Thumbnail square source={{ uri: 'https://pbs.twimg.com/profile_images/1270995122466050048/p6YGuz8y_400x400.png' }} />
-              </Left>
-              <Body>
-              <Text>This is our title</Text>
-                <Text note numberOfLines={2}>Its time to build a difference . .</Text>
-              </Body>
-              <Right>
-                <Button transparent>
-                  <Text>View</Text>
-                </Button>
-              </Right>
-            </ListItem>
-          </List>
-        </Content>
+        <Content>{view}</Content>
+        <ModalComponent
+        showModal={this.state.setModelVisible}
+        articleData ={this.state.modalArticleData}
+        onClose={this.handleModalClose}
+        />
       </Container>
     );
   }
