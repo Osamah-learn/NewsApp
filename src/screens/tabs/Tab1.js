@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Alert, ActivityIndicator } from "react-native";
 import DataItem from "../../component/DataItem";
 import { getArticles } from "../../service/news";
+import {ModalComponent }from "..//..//component/Modal";
 import {
   Container,
   Content,
@@ -23,9 +24,22 @@ export default class Tab1 extends Component {
     this.state = {
       isLoading: true,
       data: null,
+      setModelVisible: false,
+      modalArticleData: {},
     };
   }
-
+handleModalDataOnPress = (articleData)=>{
+this.setState({
+  setModelVisible:true,
+  modalArticleData:articleData,
+})
+}
+handleModalClose = ()=>{
+this.setState({
+  setModelVisible:false,
+  modalArticleData:{}
+})
+}
   componentDidMount() {
     getArticles().then(
       (data) => {
@@ -41,7 +55,6 @@ export default class Tab1 extends Component {
   }
 
   render() {
-    
     let view = this.state.isLoading ? (
       <View>
         <ActivityIndicator animating={true} />
@@ -51,12 +64,23 @@ export default class Tab1 extends Component {
       <List
         dataArray={this.state.data}
         renderRow={(item) => {
-          return <DataItem data={item} key={item} />;
+          return <DataItem
+          onPress={this.handleModalDataOnPress}
+          data={item} key={item} />;
         }}
         keyExtractor={(item, index) => index.toString()}
       />
     );
 
-    return <Container>{view}</Container>;
+    return (
+      <Container>
+        <Content>{view}</Content>
+        <ModalComponent
+        showModal={this.state.setModelVisible}
+        articleData ={this.state.modalArticleData}
+        onClose={this.handleModalClose}
+        />
+      </Container>
+    );
   }
 }
