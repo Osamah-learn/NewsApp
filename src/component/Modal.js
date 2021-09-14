@@ -13,7 +13,7 @@ import {
   Button,
 } from "native-base";
 
-const webViewHeight = Dimensions.get("window").height - 56;
+const webViewHeight = Dimensions.get("window").height - 200;
 
 export class ModalComponent extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ export class ModalComponent extends Component {
     try {
       const { url, title } = this.props.articleData;
       const result = await Share.share({
-        message: `${title}\n\nRead More @${url}\n\nShared via Osku News App`,
+        message: `${title}\n\nRead More ${url}\n\nShared via Osku News App`,
       });
 
       if (result.action === Share.sharedAction) {
