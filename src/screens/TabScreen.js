@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Container,
   Header,
-  Content,
   Tab,
   Tabs,
   Left,
@@ -24,21 +23,21 @@ export default class TabScreen extends Component {
   render() {
     return (
       <Container>
-        <Header hasTabs style={{ backgroundColor: "#33ACFF" }}>
-          <Left />
+        <Header  hasTabs style={{ backgroundColor: "#344955" ,height:80,}}>
+          <Left style={{flex:1.3}} />
           <Body>
-            <Title style={{ color: "white" }}>اخبار News</Title>
+            <Title style={{ color: "white",fontStyle:'normal',fontWeight:'bold' }}>Osku News</Title>
           </Body>
           <Right />
-        </Header>
+        </Header >
         <Tabs renderTabBar={renderTabBar}>
-          <Tab tabStyle={{ backgroundColor: "white" }} heading=" العامة">
+          <Tab tabStyle={{ backgroundColor: '#232F34' }} activeTabStyle={{ backgroundColor: "#F9AA33" }} heading=" العامة">
             <Tab1 />
           </Tab>
-          <Tab tabStyle={{ backgroundColor: "white" }} heading=" الرياضة">
+          <Tab tabStyle={{ backgroundColor: '#232F34' }} activeTabStyle={{ backgroundColor: "#F9AA33" }} heading=" الرياضة">
             <Tab2 />
           </Tab>
-          <Tab tabStyle={{ backgroundColor: "white" }} heading="تقنية">
+          <Tab tabStyle={{ backgroundColor: '#232F34' }} activeTabStyle={{ backgroundColor: "#F9AA33" }} heading="تقنية">
             <Tab3 />
           </Tab>
         </Tabs>
